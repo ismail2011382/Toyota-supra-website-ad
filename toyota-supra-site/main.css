@@ -1,0 +1,172 @@
+/* ========================================
+   Toyota Collection - Main Page Styles
+======================================== */
+
+/* Main Hero */
+.main-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding-top: 100px;
+}
+
+.main-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 100%, var(--color-glow) 0%, transparent 50%),
+        linear-gradient(to bottom, var(--color-bg), var(--color-bg-alt));
+    z-index: 0;
+}
+
+.main-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+}
+
+/* Car Sections */
+.car-section {
+    background: var(--color-bg);
+}
+
+.car-section.alt-bg {
+    background: var(--color-bg-alt);
+}
+
+/* Cars Grid */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.car-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all var(--transition-medium);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.car-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.car-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.car-card.featured {
+    border-color: var(--color-accent);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), var(--color-glow));
+}
+
+.car-card-image {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+    overflow: hidden;
+}
+
+.car-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform var(--transition-medium);
+}
+
+.car-card:hover .car-card-image img {
+    transform: scale(1.05);
+}
+
+.car-placeholder {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.car-card-content {
+    padding: 1.5rem;
+}
+
+.car-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    background: var(--color-accent);
+    color: var(--color-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+}
+
+.car-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.car-specs {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.car-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    transition: color var(--transition-medium);
+}
+
+.car-card .btn {
+    width: 100%;
+}
+
+/* Compare Section */
+.compare-section {
+    background: var(--color-bg);
+    text-align: center;
+}
+
+.compare-cta {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.compare-cta p {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .cars-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .cars-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .car-card.featured {
+        grid-column: span 1;
+    }
+}

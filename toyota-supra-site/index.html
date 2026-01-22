@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Toyota GR Supra - Born from racing. Built for the road. Experience legendary performance.">
+    <meta name="keywords" content="Toyota Supra, GR Supra, sports car, performance, racing, Japanese, luxury">
+    <meta name="author" content="Toyota">
+    <title>Toyota GR Supra | Born From Racing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-theme="red" data-mode="dark">
+    <!-- Iron Fist Easter Egg Overlay -->
+    <div id="easter-egg-overlay" class="easter-egg-overlay hidden">
+        <div class="easter-egg-content">
+            <div class="iron-fist">👊</div>
+            <div class="crack-effect"></div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" id="close-login">&times;</button>
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your Toyota account</p>
+            </div>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required placeholder="Your password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                <p class="auth-switch">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" id="close-signup">&times;</button>
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join the Toyota community</p>
+            </div>
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password (min 5 characters)</label>
+                    <input type="password" id="signup-password" required minlength="5" placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" required placeholder="Confirm password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                <p class="auth-switch">Already have an account? <a href="#" id="show-login">Sign In</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div id="verify-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" id="close-verify">&times;</button>
+            <div class="modal-header">
+                <h2>Verify Your Email</h2>
+                <p id="verify-email-text">We've sent a 6-digit code to your email</p>
+            </div>
+            <form id="verify-form" class="auth-form">
+                <div class="verification-code-inputs">
+                    <input type="text" maxlength="1" class="code-input" data-index="0">
+                    <input type="text" maxlength="1" class="code-input" data-index="1">
+                    <input type="text" maxlength="1" class="code-input" data-index="2">
+                    <input type="text" maxlength="1" class="code-input" data-index="3">
+                    <input type="text" maxlength="1" class="code-input" data-index="4">
+                    <input type="text" maxlength="1" class="code-input" data-index="5">
+                </div>
+                <p class="code-display" id="code-display"></p>
+                <button type="submit" class="btn btn-primary btn-full">Verify Email</button>
+                <p class="resend-code">Didn't receive code? <a href="#" id="resend-code">Resend</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="toyota">TOYOTA</span>
+                <span class="supra">GR SUPRA</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="main.html">All Models</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#specs">Specs</a></li>
+                <li><a href="#heritage">Heritage</a></li>
+                <li><a href="#records">Records</a></li>
+                <li><a href="#creators">Creators</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+                <!-- Auth Button -->
+                <button class="btn btn-auth" id="auth-btn">Sign In</button>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero">
+        <div class="hero-bg">
+            <div class="speed-lines"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-tag">THE LEGEND RETURNS</p>
+            <h1 class="hero-title">GR <span class="accent">SUPRA</span></h1>
+            <p class="hero-subtitle">382 HP. 0-60 in 3.9s. Pure driving exhilaration engineered by Gazoo Racing.</p>
+
+            <!-- Color Selector -->
+            <div class="color-selector">
+                <p class="color-label">SELECT YOUR COLOR</p>
+                <div class="color-options">
+                    <button class="color-btn active" data-color="red" aria-label="Renaissance Red"></button>
+                    <button class="color-btn" data-color="blue" aria-label="Refraction Blue"></button>
+                    <button class="color-btn" data-color="white" aria-label="Absolute Zero White"></button>
+                    <button class="color-btn" data-color="black" aria-label="Nocturnal Black"></button>
+                    <button class="color-btn" data-color="yellow" aria-label="Nitro Yellow"></button>
+                </div>
+                <p class="color-name" id="color-name">Renaissance Red 2.0</p>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#specs" class="btn btn-primary">Explore Specs</a>
+                <a href="#cta" class="btn btn-outline">Configure Now</a>
+            </div>
+        </div>
+
+        <!-- Car Video/Image -->
+        <div class="hero-car">
+            <video id="car-video" class="car-video" autoplay muted loop playsinline>
+                <source id="video-source" src="assets/videos/supra_red.mp4" type="video/mp4">
+            </video>
+            <img id="car-image" src="assets/supra_red.png" alt="Toyota GR Supra" class="car-image">
+        </div>
+
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Performance Section -->
+    <section id="performance" class="performance section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">ENGINEERED FOR SPEED</p>
+                <h2 class="section-title">Uncompromising Performance</h2>
+            </div>
+            <div class="performance-grid">
+                <div class="perf-card" data-animate>
+                    <span class="perf-value" data-count="382">0</span>
+                    <span class="perf-unit">HP</span>
+                    <p class="perf-label">Turbocharged Power</p>
+                </div>
+                <div class="perf-card" data-animate>
+                    <span class="perf-value" data-count="3.9" data-decimal="true">0</span>
+                    <span class="perf-unit">SEC</span>
+                    <p class="perf-label">0-60 MPH</p>
+                </div>
+                <div class="perf-card" data-animate>
+                    <span class="perf-value">50:50</span>
+                    <span class="perf-unit"></span>
+                    <p class="perf-label">Weight Distribution</p>
+                </div>
+                <div class="perf-card" data-animate>
+                    <span class="perf-value" data-count="155">0</span>
+                    <span class="perf-unit">MPH</span>
+                    <p class="perf-label">Top Speed (Limited)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section id="specs" class="specs section">
+        <div class="specs-bg"></div>
+        <div class="container">
+            <div class="specs-content">
+                <div class="specs-text">
+                    <p class="section-tag">TECHNICAL EXCELLENCE</p>
+                    <h2 class="section-title">Built to Dominate</h2>
+                    <p class="specs-desc">The heart of the GR Supra is a 3.0-liter inline-6 turbocharged engine, paired
+                        with an 8-speed automatic transmission and rear-wheel drive for an authentic sports car
+                        experience.</p>
+                    <ul class="specs-list">
+                        <li>
+                            <span class="spec-icon">⚡</span>
+                            <div class="spec-info">
+                                <strong>3.0L Inline-6 Turbo</strong>
+                                <span>382 HP @ 5,800 RPM</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="spec-icon">🔧</span>
+                            <div class="spec-info">
+                                <strong>368 lb-ft Torque</strong>
+                                <span>Peak @ 1,800-5,000 RPM</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="spec-icon">🏁</span>
+                            <div class="spec-info">
+                                <strong>8-Speed Sport Auto</strong>
+                                <span>Paddle Shifters Standard</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="spec-icon">🛞</span>
+                            <div class="spec-info">
+                                <strong>Adaptive Suspension</strong>
+                                <span>Track-Tuned Dampers</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="specs-visual">
+                    <div class="engine-glow"></div>
+                    <div class="engine-placeholder">
+                        <span>INLINE-6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Section -->
+    <section id="heritage" class="heritage section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">A LEGACY OF LEGENDS</p>
+                <h2 class="section-title">Born From Racing</h2>
+            </div>
+            <div class="heritage-content">
+                <p class="heritage-intro">For over four decades, the Supra has been synonymous with speed, precision,
+                    and the relentless pursuit of driving perfection. From the streets of Tokyo to racetracks around the
+                    world, the Supra legacy lives on.</p>
+                <div class="timeline">
+                    <div class="timeline-item" data-animate>
+                        <span class="year">1978</span>
+                        <div class="event">
+                            <strong>Celica Supra (A40)</strong>
+                            <p>The first generation is born, setting the stage for a legend.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-animate>
+                        <span class="year">1981</span>
+                        <div class="event">
+                            <strong>Celica Supra (A60)</strong>
+                            <p>Second generation brings more power and refined styling.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-animate>
+                        <span class="year">1986</span>
+                        <div class="event">
+                            <strong>Supra (A70)</strong>
+                            <p>Third generation - Supra becomes its own standalone model.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-animate>
+                        <span class="year">1993</span>
+                        <div class="event">
+                            <strong>Mk4 Supra (A80)</strong>
+                            <p>The iconic 2JZ-GTE twin-turbo engine redefines performance.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-animate>
+                        <span class="year">2019</span>
+                        <div class="event">
+                            <strong>GR Supra (A90)</strong>
+                            <p>The legend returns, engineered by Gazoo Racing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Records Section -->
+    <section id="records" class="records section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">BREAKING LIMITS</p>
+                <h2 class="section-title">World Records & Achievements</h2>
+            </div>
+            <div class="records-grid">
+                <div class="record-card" data-animate>
+                    <div class="record-icon">🏆</div>
+                    <h3>Nürburgring Lap</h3>
+                    <p class="record-value">7:52.17</p>
+                    <p class="record-desc">Production car lap time at the legendary German track</p>
+                </div>
+                <div class="record-card" data-animate>
+                    <div class="record-icon">⚡</div>
+                    <h3>1/4 Mile Record</h3>
+                    <p class="record-value">6.05 sec</p>
+                    <p class="record-desc">Modified Supra world record quarter mile</p>
+                </div>
+                <div class="record-card" data-animate>
+                    <div class="record-icon">🔥</div>
+                    <h3>Peak Horsepower</h3>
+                    <p class="record-value">2,500+ HP</p>
+                    <p class="record-desc">Modified 2JZ engine maximum achieved power</p>
+                </div>
+                <div class="record-card" data-animate>
+                    <div class="record-icon">💨</div>
+                    <h3>Top Speed</h3>
+                    <p class="record-value">222 MPH</p>
+                    <p class="record-desc">Modified Supra recorded top speed</p>
+                </div>
+                <div class="record-card" data-animate>
+                    <div class="record-icon">🌍</div>
+                    <h3>Global Sales</h3>
+                    <p class="record-value">500K+</p>
+                    <p class="record-desc">Supras sold worldwide across all generations</p>
+                </div>
+                <div class="record-card" data-animate>
+                    <div class="record-icon">🎬</div>
+                    <h3>Movie Appearances</h3>
+                    <p class="record-value">8 Films</p>
+                    <p class="record-desc">Fast & Furious franchise appearances</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creators Section -->
+    <section id="creators" class="creators section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">VISIONARIES BEHIND THE LEGEND</p>
+                <h2 class="section-title">The Creators</h2>
+            </div>
+            <div class="creators-grid">
+                <div class="creator-card" data-animate>
+                    <div class="creator-avatar">👨‍💼</div>
+                    <h3>Tetsuya Tada</h3>
+                    <p class="creator-role">Chief Engineer - A90 Supra</p>
+                    <p class="creator-bio">Led the development of the fifth-generation Supra, ensuring it honored the
+                        legacy while embracing modern engineering.</p>
+                </div>
+                <div class="creator-card" data-animate>
+                    <div class="creator-avatar">👨‍🔧</div>
+                    <h3>Nobuo Nakamura</h3>
+                    <p class="creator-role">Chief Engineer - A80 Supra</p>
+                    <p class="creator-bio">The mastermind behind the iconic MK4 Supra and its legendary 2JZ engine
+                        platform.</p>
+                </div>
+                <div class="creator-card" data-animate>
+                    <div class="creator-avatar">🎨</div>
+                    <h3>Isao Tsuzuki</h3>
+                    <p class="creator-role">Lead Designer - A80 Supra</p>
+                    <p class="creator-bio">Created the timeless design language that made the MK4 Supra an instant
+                        classic.</p>
+                </div>
+                <div class="creator-card" data-animate>
+                    <div class="creator-avatar">🏎️</div>
+                    <h3>GAZOO Racing</h3>
+                    <p class="creator-role">Performance Division</p>
+                    <p class="creator-bio">Toyota's motorsport division that fine-tuned the GR Supra for ultimate
+                        performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Deep Dive Section -->
+    <section id="history" class="history section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">DEEP DIVE</p>
+                <h2 class="section-title">The Complete History</h2>
+            </div>
+            <div class="history-tabs">
+                <button class="history-tab active" data-gen="a40">A40 (1978)</button>
+                <button class="history-tab" data-gen="a60">A60 (1981)</button>
+                <button class="history-tab" data-gen="a70">A70 (1986)</button>
+                <button class="history-tab" data-gen="a80">A80 (1993)</button>
+                <button class="history-tab" data-gen="a90">A90 (2019)</button>
+            </div>
+            <div class="history-content">
+                <div class="history-panel active" data-gen="a40">
+                    <div class="history-image">
+                        <div class="history-placeholder">A40</div>
+                    </div>
+                    <div class="history-details">
+                        <h3>Celica Supra (A40) - 1978-1981</h3>
+                        <p>The original Supra was born as a longer, more powerful version of the Celica. Featuring a
+                            2.6L inline-6 engine producing 110 HP, it marked the beginning of Toyota's sports car
+                            legacy. The A40 introduced the world to what would become one of the most iconic sports car
+                            nameplates.</p>
+                        <ul class="history-specs">
+                            <li><strong>Engine:</strong> 2.6L Inline-6 (4M-E)</li>
+                            <li><strong>Power:</strong> 110 HP</li>
+                            <li><strong>0-60:</strong> 10.2 seconds</li>
+                            <li><strong>Production:</strong> 1978-1981</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="history-panel" data-gen="a60">
+                    <div class="history-image">
+                        <div class="history-placeholder">A60</div>
+                    </div>
+                    <div class="history-details">
+                        <h3>Celica Supra (A60) - 1981-1986</h3>
+                        <p>The second generation brought significant improvements in power and handling. With a new 2.8L
+                            engine and available digital dashboard, the A60 showed Toyota's commitment to technological
+                            leadership in the sports car segment.</p>
+                        <ul class="history-specs">
+                            <li><strong>Engine:</strong> 2.8L Inline-6 (5M-GE)</li>
+                            <li><strong>Power:</strong> 145 HP</li>
+                            <li><strong>0-60:</strong> 8.4 seconds</li>
+                            <li><strong>Production:</strong> 1981-1986</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="history-panel" data-gen="a70">
+                    <div class="history-image">
+                        <div class="history-placeholder">A70</div>
+                    </div>
+                    <div class="history-details">
+                        <h3>Supra (A70) - 1986-1993</h3>
+                        <p>Supra finally became its own model, separate from Celica. The A70 introduced turbocharging
+                            with the 7M-GTE engine, producing 230 HP. This generation established the Supra as a serious
+                            performance contender.</p>
+                        <ul class="history-specs">
+                            <li><strong>Engine:</strong> 3.0L Inline-6 Turbo (7M-GTE)</li>
+                            <li><strong>Power:</strong> 230 HP</li>
+                            <li><strong>0-60:</strong> 6.1 seconds</li>
+                            <li><strong>Production:</strong> 1986-1993</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="history-panel" data-gen="a80">
+                    <div class="history-image">
+                        <div class="history-placeholder">A80</div>
+                    </div>
+                    <div class="history-details">
+                        <h3>Supra (A80) - 1993-2002</h3>
+                        <p>The legendary MK4 Supra with the iconic 2JZ-GTE twin-turbo engine. Capable of supporting over
+                            1,000 HP with minimal modifications, it became a tuner's dream and cultural icon through the
+                            Fast & Furious franchise.</p>
+                        <ul class="history-specs">
+                            <li><strong>Engine:</strong> 3.0L Twin-Turbo Inline-6 (2JZ-GTE)</li>
+                            <li><strong>Power:</strong> 320 HP (Japan: 276 HP)</li>
+                            <li><strong>0-60:</strong> 4.6 seconds</li>
+                            <li><strong>Production:</strong> 1993-2002</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="history-panel" data-gen="a90">
+                    <div class="history-image">
+                        <div class="history-placeholder">A90</div>
+                    </div>
+                    <div class="history-details">
+                        <h3>GR Supra (A90) - 2019-Present</h3>
+                        <p>After a 17-year hiatus, the Supra returns. Developed in collaboration with BMW and tuned by
+                            Gazoo Racing, the A90 combines modern technology with the spirit of its predecessors. The
+                            B58 engine provides exhilarating performance.</p>
+                        <ul class="history-specs">
+                            <li><strong>Engine:</strong> 3.0L Turbo Inline-6 (B58)</li>
+                            <li><strong>Power:</strong> 382 HP</li>
+                            <li><strong>0-60:</strong> 3.9 seconds</li>
+                            <li><strong>Production:</strong> 2019-Present</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">EVERY ANGLE, PERFECTED</p>
+                <h2 class="section-title">Design Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large" data-animate>
+                    <img src="assets/supra_red.png" alt="Toyota Supra Red" class="gallery-img">
+                </div>
+                <div class="gallery-item" data-animate>
+                    <img src="assets/supra_blue.png" alt="Toyota Supra Blue" class="gallery-img">
+                </div>
+                <div class="gallery-item" data-animate>
+                    <img src="assets/supra_white.png" alt="Toyota Supra White" class="gallery-img">
+                </div>
+                <div class="gallery-item" data-animate>
+                    <img src="assets/supra_yellow.png" alt="Toyota Supra Yellow" class="gallery-img">
+                </div>
+                <div class="gallery-item" data-animate>
+                    <img src="assets/supra_black.png" alt="Toyota Supra Black" class="gallery-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta section">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta-content">
+                <p class="section-tag">YOUR SUPRA AWAITS</p>
+                <h2 class="section-title">Configure Your Dream Machine</h2>
+                <p class="cta-desc">Choose your color, trim, and options. Build the GR Supra that matches your vision of
+                    driving perfection.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Build & Price</a>
+                    <a href="#" class="btn btn-outline">Find a Dealer</a>
+                </div>
+                <p class="cta-note">Starting at $43,540 MSRP*</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="logo">
+                    <span class="toyota">TOYOTA</span>
+                    <span class="supra">GR SUPRA</span>
+                </a>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Toyota Motor Corporation. All rights reserved.</p>
+                <p class="credit">Made by <strong>Ismail</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
